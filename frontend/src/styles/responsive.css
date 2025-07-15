@@ -1,0 +1,103 @@
+/* 響應式樣式優化 */
+
+/* 移動端基本優化 */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* 減小間距 */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* 調整按鈕大小 */
+  button, .btn {
+    padding: 0.5rem 1rem;
+  }
+  
+  /* 增加觸摸目標大小 */
+  input[type="checkbox"], 
+  input[type="radio"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+}
+
+/* 觸摸優化 */
+@media (hover: none) {
+  /* 增加所有可點擊元素的觸摸區域 */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 去除懸停效果，改為活動狀態效果 */
+  .hover\:bg-blue-700:hover {
+    background-color: inherit;
+  }
+  
+  .hover\:bg-blue-700:active {
+    background-color: #1d4ed8;
+  }
+}
+
+/* 平板電腦優化 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* 調整網格佈局 */
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  body.dark-mode-enabled {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+  
+  body.dark-mode-enabled .bg-white {
+    background-color: #374151;
+  }
+  
+  body.dark-mode-enabled .text-gray-800 {
+    color: #f3f4f6;
+  }
+  
+  body.dark-mode-enabled .text-gray-600 {
+    color: #d1d5db;
+  }
+  
+  body.dark-mode-enabled .border-gray-200 {
+    border-color: #4b5563;
+  }
+}
+
+/* 減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 打印樣式 */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  body {
+    font-size: 12pt;
+    color: #000;
+    background-color: #fff;
+  }
+  
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+}
